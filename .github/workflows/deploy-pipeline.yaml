@@ -44,3 +44,12 @@ jobs:
         with:
           name: zipped-bundle
           path: ${{ github.sha }}.zip
+  deploy-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
+        with:
+          folder: docs
+
+    
