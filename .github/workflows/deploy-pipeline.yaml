@@ -53,6 +53,7 @@ jobs:
       - name: Create docs folder
         run: mkdir docs
       - name: Convert markdown to html using Pandoc
+        uses: docker://pandoc/core:2.9
         with:
           args: >-  
             --standalone
