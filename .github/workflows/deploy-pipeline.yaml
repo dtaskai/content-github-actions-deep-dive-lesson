@@ -46,9 +46,18 @@ jobs:
           path: ${{ github.sha }}.zip
   deploy-gh-pages:
     runs-on: ubuntu-latest
+    needs: lint
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Create docs folder
+        run: mkdir docs
+      - name: Convert markdown to html using Pandoc
+        with:
+          args: >-  
+            --standalone
+            --output=docs/index.html
+            userguide.md
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
